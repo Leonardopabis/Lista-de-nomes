@@ -10,7 +10,7 @@ export function ContactProvider({ children }) {
             email: 'emailbeeeeeemgraaandeeee@gmail.com',
             phone: '123-456-7890'
         }, {
-            id: 3,
+            id: 2,
             name: 'John Doe 2',
             gender: 'female',
             email: 'john.doe@example.com',
@@ -34,16 +34,17 @@ export function ContactProvider({ children }) {
 
         const newContact = {
             id: crypto.randomUUID(),
-            name,
-            gender,
-            email,
-            phone
+            name: name,
+            gender: gender,
+            email: email,
+            phone: phone
         }
 
         setContacts(currentContacts => [
             ...currentContacts, newContact
         ])
         console.log(contacts)
+        console.log(newContact)
     }
 
 

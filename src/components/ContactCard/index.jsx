@@ -20,6 +20,10 @@ export function ContactCard({ contact }) {
                     <h3>{contact.name}</h3>
                     <p>{genero}</p>
                 </div>
+                <div className='right-side'>
+                    <button><img src="./src/assets/editImage.png" alt="" /></button>
+                    <button><img src="./src/assets/deleteImage.png" alt="" /></button>
+                </div>
             </div>
             <div>
                 <p>{contact.email}</p>

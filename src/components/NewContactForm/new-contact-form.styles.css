@@ -12,6 +12,7 @@
 .text-radio-separator {
     display: flex;
     gap: 10px;
+    justify-content: space-between;
 }
 
 .text-radio-separator input[type='text'] {
