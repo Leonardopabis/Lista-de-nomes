@@ -14,9 +14,21 @@ function App() {
       id: 1,
       name: 'John Doe',
       gender: 'male',
+      email: 'emailbeeeeeemgraaandeeee@gmail.com',
+      phone: '123-456-7890'
+    },{
+      id: 3,
+      name: 'John Doe 2',
+      gender: 'male',
       email: 'john.doe@example.com',
       phone: '123-456-7890'
-    }
+    },{
+      id: 3,
+      name: 'John Doe 3',
+      gender: 'male',
+      email: 'john.doe@example.com',
+      phone: '123-456-7890'
+    },
   ]
 
   return (
@@ -29,7 +41,7 @@ function App() {
         <NewContactForm />
       </FieldContainer>
       <FieldContainer>
-        <ContactList />
+        <ContactList contacts={contacts} />
       </FieldContainer>
     </main>
     </>

@@ -1,0 +1,29 @@
+.contact-card {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.contact-card .top-part {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.contact-card p {
+    font-size: 16px;
+    font-weight: 500px;
+    margin-bottom: 5px;
+}
