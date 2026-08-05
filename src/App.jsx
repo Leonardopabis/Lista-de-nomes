@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -6,30 +6,10 @@ import './App.css'
 import { NewContactForm } from './components/NewContactForm'
 import { ContactList } from './components/ContactList'
 import { FieldContainer } from './components/FieldContainer'
+import contactContext from './components/ContactProvider/ContactContext'
 
 function App() {
-
-  let contacts = [
-    {
-      id: 1,
-      name: 'John Doe',
-      gender: 'male',
-      email: 'emailbeeeeeemgraaandeeee@gmail.com',
-      phone: '123-456-7890'
-    },{
-      id: 3,
-      name: 'John Doe 2',
-      gender: 'male',
-      email: 'john.doe@example.com',
-      phone: '123-456-7890'
-    },{
-      id: 3,
-      name: 'John Doe 3',
-      gender: 'male',
-      email: 'john.doe@example.com',
-      phone: '123-456-7890'
-    },
-  ]
+  const {contacts} = useContext(contactContext)
 
   return (
     <>

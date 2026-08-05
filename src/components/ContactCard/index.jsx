@@ -8,7 +8,7 @@ export function ContactCard({ contact }) {
         img = './src/assets/imagemHomem.png'
         genero = 'Masculino'
     } else {
-        img = '.src/./assets/imagemMulher.png'
+        img = './src/assets/imagemMulher.png'
         genero = 'Feminino'
     }
 

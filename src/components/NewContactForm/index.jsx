@@ -1,10 +1,13 @@
+import { useContext } from 'react'
 import './new-contact-form.styles.css'
+import contactContext from '../ContactProvider/ContactContext'
 
 export function NewContactForm() {
+    const { handleAddContact } = useContext(contactContext)
     return (
         <>
             <h2>Novo Contato</h2>
-            <form className='new-contact-form'>
+            <form className='new-contact-form' onSubmit={handleAddContact}>
                 <div className='text-radio-separator'>
                     <input type="text" placeholder="Nome" />
                     <div className='input-radio-container'>
