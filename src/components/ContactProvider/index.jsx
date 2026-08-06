@@ -24,14 +24,8 @@ export function ContactProvider({ children }) {
         },
     ])
 
-    const handleAddContact = (event) => {
-        event.preventDefault()
-        const formData = new FormData(event.target)
-        const name = formData.get('name')
-        const gender = formData.get('gender')
-        const email = formData.get('email')
-        const phone = formData.get('phone')
-
+    const handleAddContact = ({ name, gender, email, phone}) => {
+        
         const newContact = {
             id: crypto.randomUUID(),
             name: name,
