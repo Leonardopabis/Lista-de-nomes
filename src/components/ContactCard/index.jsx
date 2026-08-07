@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import './contact-card.styles.css'
+import contactContext from '../ContactProvider/ContactContext'
 
 export function ContactCard({ contact }) {
     let img = null
@@ -12,6 +14,9 @@ export function ContactCard({ contact }) {
         genero = 'Feminino'
     }
 
+    const {setIsEditing, handleEditContact, setContactId, setInputsToEdit} = useContext(contactContext)
+
+
     return (
         <div className='contact-card'>
             <div className='top-part'>
@@ -21,7 +26,11 @@ export function ContactCard({ contact }) {
                     <p>{genero}</p>
                 </div>
                 <div className='right-side'>
-                    <button><img src="./src/assets/editImage.png" alt="" /></button>
+                    <button onClick={() => {
+                        setIsEditing(true)
+                        setContactId(contact.id)
+                        setInputsToEdit(contact.name, contact.gender, contact.email, contact.phone)
+                    }}><img src="./src/assets/editImage.png" alt="" /></button>
                     <button><img src="./src/assets/deleteImage.png" alt="" /></button>
                 </div>
             </div>

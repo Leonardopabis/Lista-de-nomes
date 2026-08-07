@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './new-contact-form.styles.css'
 import contactContext from '../ContactProvider/ContactContext'
 
@@ -70,32 +70,52 @@ export function NewContactForm() {
         setErrors(currentErrors)
 
         if (isValid) {
-            handleAddContact({ name, gender, email, phone })
-            event.currentTarget.reset()
+            if (isEditing) {
+                handleEditContact(contactId, name, gender, email, phone)
+                event.currentTarget.reset()
+            } else {
+
+                handleAddContact({ name, gender, email, phone })
+                event.currentTarget.reset()
+            }
         }
         
         
     }
     
+    const {nameRef, genderMaleRef, genderFemaleRef, emailRef, phoneRef, isEditing, setIsEditing, handleEditContact, contactId, setContactId} = useContext(contactContext)
+
+    useEffect(() => {
+        if (isEditing === true) {
+            setErrors({
+                name: '',
+                gender: '',
+                email: '',
+                gender: ''
+            })
+        }
+    }, [isEditing])
 
     return (
         <>
             <h2>Novo Contato</h2>
-            <form className='new-contact-form' onSubmit={handleSubmit}>
+            <form className='new-contact-form' onSubmit={(event) => {
+                    handleSubmit(event)
+            }}>
             <div className="text-radio-separator">
                     <div className="input-field-container">
-                        <input type="text" placeholder="Nome" name='name' onChange={handleChange} className={errors.name ? 'input-error-state' : ''}/>
+                        <input type="text" placeholder="Nome" name='name' onChange={handleChange} className={errors.name ? 'input-error-state' : ''} ref={nameRef}/>
                         {errors.name && <p className='error-message'>{errors.name}</p>}
                     </div>
 
                     <div className="input-field-container">
                         <div className={`input-radio-container ${errors.gender} ? 'input-error-state-radio : ''`}>
                             <div className='input-radio'>
-                                <input type="radio" name="gender" value="male" id='male' onChange={handleChange}/>
+                                <input type="radio" name="gender" value="male" id='male' onChange={handleChange} ref={genderMaleRef}/>
                                 <label htmlFor="male">Masculino</label>
                             </div>
                             <div className='input-radio'>
-                                <input type="radio" name="gender" value="female" id='female' onCanPlay={handleChange}/>
+                                <input type="radio" name="gender" value="female" id='female' onCanPlay={handleChange} ref={genderFemaleRef}/>
                                 <label htmlFor="female">Feminino</label>
                             </div>
                         </div>
@@ -104,16 +124,16 @@ export function NewContactForm() {
                 </div>
 
                 <div className="input-field-container">
-                    <input type="email" placeholder="Email" name='email' onChange={handleChange} className={errors.email ? 'input-error-state' : ''}/>
+                    <input type="email" placeholder="Email" name='email' onChange={handleChange} className={errors.email ? 'input-error-state' : ''} ref={emailRef}/>
                     {errors.email && <span className='error-message'>{errors.email}</span>}
                 </div>
 
                 <div className="input-field-container">
-                    <input type="tel" placeholder="Telefone" name='phone' onChange={handleChange} className={errors.phone ? 'input-error-state' : ''}/>
+                    <input type="tel" placeholder="Telefone" name='phone' onChange={handleChange} className={errors.phone ? 'input-error-state' : ''} ref={phoneRef}/>
                     {errors.phone && <span className='error-message'>{errors.phone}</span>}
                 </div>
 
-                <button type="submit" className='new-contact-button'>Adicionar Contato</button>
+                <button type="submit" className='new-contact-button'>{isEditing ? 'Editar Contato' : 'Adicionar Contato'}</button>
             </form>
         </>
     )

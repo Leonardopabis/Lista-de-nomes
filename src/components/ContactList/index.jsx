@@ -5,6 +5,8 @@ export function ContactList({ contacts }) {
     return (
         <div className='contact-list'>
             {contacts.map(contact => {
+                if (!contact) return null
+
                 return (
                     <ContactCard key={contact.id} contact={contact} />
                 )
