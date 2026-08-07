@@ -52,11 +52,10 @@ h2 {
     width: auto;
 }
 
-/* --- Seletores de Rádio (Gênero) --- */
 .input-radio-container {
     display: flex;
     gap: 10px;
-    padding: 6px 0; /* Alinha visualmente a altura com o input de texto ao lado */
+    padding: 6px 0; 
 }
 
 .input-radio {
@@ -76,14 +75,11 @@ h2 {
     user-select: none;
 }
 
-/* --- Estados de Erro (Visual e Bordas) --- */
-/* Borda vermelha e fundo sutil nos inputs com erro */
 .input-field-container .input-error-state {
     border-color: #e53e3e !important;
     background-color: #fff5f5;
 }
 
-/* Destaque sutil para a área de rádio se houver erro */
 .input-error-state-radio {
     background-color: #fff5f5;
     padding: 4px 8px;
@@ -91,7 +87,6 @@ h2 {
     border: 1px dashed rgba(229, 62, 62, 0.4);
 }
 
-/* Mensagem de erro refinada abaixo do campo */
 .error-message {
     color: #e53e3e;
     font-size: 12px;
@@ -102,7 +97,7 @@ h2 {
     animation: errorFadeIn 0.15s ease-out;
 }
 
-/* --- Botão de Envio --- */
+
 .new-contact-button {
     width: 350px;
     height: 38px;
@@ -123,7 +118,6 @@ h2 {
     background-color: #0056b3;
 }
 
-/* --- Animação de Entrada do Erro --- */
 @keyframes errorFadeIn {
     from {
         opacity: 0;
