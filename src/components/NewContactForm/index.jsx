@@ -82,22 +82,37 @@ export function NewContactForm() {
         <>
             <h2>Novo Contato</h2>
             <form className='new-contact-form' onSubmit={handleSubmit}>
-                <div className='text-radio-separator'>
-                    <input type="text" placeholder="Nome" name='name' onChange={handleChange}/>
-                    {errors.name && <p className='error-message'>{errors.name}</p>}
-                    <div className='input-radio-container'>
-                        <div className='input-radio'>
-                            <input type="radio" name="gender" value="male" id='male'/>
-                            <label htmlFor="male">Masculino</label>
+            <div className="text-radio-separator">
+                    <div className="input-field-container">
+                        <input type="text" placeholder="Nome" name='name' onChange={handleChange} className={errors.name ? 'input-error-state' : ''}/>
+                        {errors.name && <p className='error-message'>{errors.name}</p>}
+                    </div>
+
+                    <div className="input-field-container">
+                        <div className={`input-radio-container ${errors.gender} ? 'input-error-state-radio : ''`}>
+                            <div className='input-radio'>
+                                <input type="radio" name="gender" value="male" id='male' onChange={handleChange}/>
+                                <label htmlFor="male">Masculino</label>
+                            </div>
+                            <div className='input-radio'>
+                                <input type="radio" name="gender" value="female" id='female' onCanPlay={handleChange}/>
+                                <label htmlFor="female">Feminino</label>
+                            </div>
                         </div>
-                        <div className='input-radio'>
-                            <input type="radio" name="gender" value="female" id='female'/>
-                            <label htmlFor="female">Feminino</label>
-                        </div>
+                        {errors.gender && <span className='error-message'>{errors.gender}</span>}
                     </div>
                 </div>
-                <input type="email" placeholder="Email" name='email'/>
-                <input type="tel" placeholder="Telefone" name='phone' />
+
+                <div className="input-field-container">
+                    <input type="email" placeholder="Email" name='email' onChange={handleChange} className={errors.email ? 'input-error-state' : ''}/>
+                    {errors.email && <span className='error-message'>{errors.email}</span>}
+                </div>
+
+                <div className="input-field-container">
+                    <input type="tel" placeholder="Telefone" name='phone' onChange={handleChange} className={errors.phone ? 'input-error-state' : ''}/>
+                    {errors.phone && <span className='error-message'>{errors.phone}</span>}
+                </div>
+
                 <button type="submit" className='new-contact-button'>Adicionar Contato</button>
             </form>
         </>

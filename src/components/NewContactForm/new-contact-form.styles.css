@@ -1,27 +1,62 @@
+
+h2 {
+    font-weight: bold;
+    font-size: 20px;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+
 .new-contact-form {
     margin: 10px 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px; 
 }
 
-.new-contact-form input {
-    padding: 5px;
+.new-contact-form input[type='text'],
+.new-contact-form input[type='email'],
+.new-contact-form input[type='tel'] {
+    width: 100%; 
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
+
+.new-contact-form input:focus {
+    border-color: #0070f3;
+}
+
+.input-field-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 
 .text-radio-separator {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     justify-content: space-between;
+    align-items: flex-start;
 }
 
-.text-radio-separator input[type='text'] {
+.text-radio-separator .input-field-container:first-of-type {
     width: 75%;
 }
 
+.text-radio-separator .input-field-container:last-of-type {
+    width: auto;
+}
+
+/* --- Seletores de Rádio (Gênero) --- */
 .input-radio-container {
     display: flex;
     gap: 10px;
+    padding: 6px 0; /* Alinha visualmente a altura com o input de texto ao lado */
 }
 
 .input-radio {
@@ -30,15 +65,72 @@
     align-items: center;
 }
 
-
-h2 {
-    font-weight: bold;
-    font-size: 20px;
+.input-radio input[type='radio'] {
+    cursor: pointer;
+    margin: 0;
 }
 
+.input-radio label {
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* --- Estados de Erro (Visual e Bordas) --- */
+/* Borda vermelha e fundo sutil nos inputs com erro */
+.input-field-container .input-error-state {
+    border-color: #e53e3e !important;
+    background-color: #fff5f5;
+}
+
+/* Destaque sutil para a área de rádio se houver erro */
+.input-error-state-radio {
+    background-color: #fff5f5;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px dashed rgba(229, 62, 62, 0.4);
+}
+
+/* Mensagem de erro refinada abaixo do campo */
+.error-message {
+    color: #e53e3e;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+    text-align: left;
+    display: block;
+    animation: errorFadeIn 0.15s ease-out;
+}
+
+/* --- Botão de Envio --- */
 .new-contact-button {
     width: 350px;
-    height: 35px;
+    height: 38px;
     max-width: 50%;
     align-self: center;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s;
+}
+
+.new-contact-button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Animação de Entrada do Erro --- */
+@keyframes errorFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
