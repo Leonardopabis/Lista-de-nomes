@@ -16,6 +16,16 @@ export function ContactCard({ contact }) {
 
     const {setIsEditing, handleEditContact, setContactId, setInputsToEdit} = useContext(contactContext)
 
+    function formatarTelefone(phone) {
+        const ddd = phone.slice(0, 2)
+        const resto = phone.slice(2)
+
+        if (resto.length === 9) {
+            return `(${ddd}) ${resto.slice(0, 5)}-${resto.slice(5)}`
+        } else {
+            return `(${ddd}) ${resto.slice(0, 4)}-${resto.slice(4)}`
+        }
+    }
 
     return (
         <div className='contact-card'>
@@ -36,7 +46,7 @@ export function ContactCard({ contact }) {
             </div>
             <div>
                 <p>{contact.email}</p>
-                <p>{contact.phone}</p>
+                <p>{formatarTelefone(contact.phone)}</p>
             </div>
         </div>
     )

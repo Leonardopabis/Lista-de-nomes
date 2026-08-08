@@ -1,28 +1,19 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import ContactContext from "./ContactContext"
 
 export function ContactProvider({ children }) {
-    const [contacts, setContacts] = useState([
-        {
-            id: 1,
-            name: 'John Doe',
-            gender: 'male',
-            email: 'emailbeeeeeemgraaandeeee@gmail.com',
-            phone: '123-456-7890'
-        }, {
-            id: 2,
-            name: 'John Doe 2',
-            gender: 'female',
-            email: 'john.doe@example.com',
-            phone: '123-456-7890'
-        }, {
-            id: 3,
-            name: 'John Doe 3',
-            gender: 'male',
-            email: 'john.doe@example.com',
-            phone: '123-456-7890'
-        },
-    ])
+    const [contacts, setContacts] = useState(() => {
+        const savedContacts = localStorage.getItem('contacts')
+        if (savedContacts) {
+            return JSON.parse(savedContacts)
+        } else {
+            return []
+        }
+    })
+
+    useEffect(() => {
+        localStorage.setItem('contacts', JSON.stringify(contacts))
+    }, [contacts])
 
     const handleAddContact = ({ name, gender, email, phone}) => {
         
@@ -37,8 +28,6 @@ export function ContactProvider({ children }) {
         setContacts(currentContacts => [
             ...currentContacts, newContact
         ])
-        console.log(contacts)
-        console.log(newContact)
     }
 
     const [contactId, setContactId] = useState(null)

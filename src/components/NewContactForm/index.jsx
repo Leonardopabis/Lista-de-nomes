@@ -31,8 +31,12 @@ export function NewContactForm() {
                 error = 'Insira um email válido'
             }
         }
-
-        if (name === 'phone' && !trimmedValue) {
+        
+        const onlyNumbers = /^\d+$/.test(trimmedValue)
+        if (name === 'phone' && (!trimmedValue || !onlyNumbers)) {
+            if (!Number.isNaN(trimmedValue)){
+                phoneRef.current.value = phoneRef.current.value.replace(/[^\d]/g, '')
+            }
             error = 'O telefone é obrigatório'
         }
 
