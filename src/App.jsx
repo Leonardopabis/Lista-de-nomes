@@ -23,6 +23,7 @@ function App() {
       <FieldContainer>
         <ContactList contacts={contacts} />
       </FieldContainer>
+      <Dialog />
     </main>
     </>
   )
