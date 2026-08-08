@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import './contact-card.styles.css'
 import contactContext from '../ContactProvider/ContactContext'
 
-export function ContactCard({ contact }) {
+export function ContactCard({ contact, isDeleting }) {
     let img = null
     let genero = ''
 
@@ -14,7 +14,7 @@ export function ContactCard({ contact }) {
         genero = 'Feminino'
     }
 
-    const {setIsEditing, handleEditContact, setContactId, setInputsToEdit} = useContext(contactContext)
+    const {setIsEditing, handleEditContact, setContactId, setInputsToEdit, openDialog, setDeleteId} = useContext(contactContext)
 
     function formatarTelefone(phone) {
         const ddd = phone.slice(0, 2)
@@ -36,12 +36,19 @@ export function ContactCard({ contact }) {
                     <p>{genero}</p>
                 </div>
                 <div className='right-side'>
-                    <button onClick={() => {
-                        setIsEditing(true)
-                        setContactId(contact.id)
-                        setInputsToEdit(contact.name, contact.gender, contact.email, contact.phone)
-                    }}><img src="./src/assets/editImage.png" alt="" /></button>
-                    <button><img src="./src/assets/deleteImage.png" alt="" /></button>
+                    {!isDeleting && (
+                        <>
+                            <button onClick={() => {
+                                setIsEditing(true)
+                                setContactId(contact.id)
+                                setInputsToEdit(contact.name, contact.gender, contact.email, contact.phone)
+                            }}><img src="./src/assets/editImage.png" alt="" /></button>
+                            <button onClick={() => {
+                                setDeleteId(contact.id)
+                                openDialog()
+                            }}><img src="./src/assets/deleteImage.png" alt="" /></button>
+                        </>
+                    )}
                 </div>
             </div>
             <div>

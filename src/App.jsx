@@ -7,6 +7,7 @@ import { NewContactForm } from './components/NewContactForm'
 import { ContactList } from './components/ContactList'
 import { FieldContainer } from './components/FieldContainer'
 import contactContext from './components/ContactProvider/ContactContext'
+import { Dialog } from './components/Dialog'
 
 function App() {
   const {contacts} = useContext(contactContext)
@@ -20,10 +21,10 @@ function App() {
       <FieldContainer>
         <NewContactForm />
       </FieldContainer>
+      <Dialog/>
       <FieldContainer>
         <ContactList contacts={contacts} />
       </FieldContainer>
-      <Dialog />
     </main>
     </>
   )

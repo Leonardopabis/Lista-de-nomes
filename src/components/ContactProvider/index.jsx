@@ -62,6 +62,13 @@ export function ContactProvider({ children }) {
         emailRef.current.value = email
     }
 
+    const [deleteId, setDeleteId] = useState(null)
+    const [isDialogOpen, setIsDialogOpen] = useState(false)
+    const openDialog = () => setIsDialogOpen(true)
+    const closeDialog = () => {
+        setIsDialogOpen(false)
+        setDeleteId(null)
+    }
 
     return (
         <ContactContext
@@ -79,6 +86,11 @@ export function ContactProvider({ children }) {
                 setIsEditing,
                 handleEditContact,
                 setInputsToEdit,
+                isDialogOpen,
+                openDialog,
+                closeDialog,
+                deleteId,
+                setDeleteId
             }}>
             {children}
         </ContactContext>

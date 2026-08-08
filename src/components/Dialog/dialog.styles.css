@@ -1,0 +1,44 @@
+.deleteDialog {
+    width: 400px;
+    height: 250px;
+    position: fixed;
+    margin: auto;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+.delete-btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.delete-button {
+    width: 100px;
+    height: 35px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.no-button {
+    background-color: rgb(255, 103, 103);
+}
+
+.no-button:hover {
+    background-color: red;
+}
+
+.yes-button {
+    background-color: lightgreen;
+}
+
+.yes-button:hover {
+    background-color: rgb(59, 193, 59);
+}

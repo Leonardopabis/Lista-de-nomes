@@ -8,7 +8,7 @@ export function ContactList({ contacts }) {
                 if (!contact) return null
 
                 return (
-                    <ContactCard key={contact.id} contact={contact} />
+                    <ContactCard key={contact.id} contact={contact} isDeleting={false}/>
                 )
             })}
         </div>
