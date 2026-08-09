@@ -70,6 +70,13 @@ export function ContactProvider({ children }) {
         setDeleteId(null)
     }
 
+    function deleteContact(id) {
+        setContacts(currentContacts => 
+            currentContacts.filter(contact => contact.id !== id)
+        )
+        setDeleteId(null)
+    }
+
     return (
         <ContactContext
             value={{
@@ -90,7 +97,8 @@ export function ContactProvider({ children }) {
                 openDialog,
                 closeDialog,
                 deleteId,
-                setDeleteId
+                setDeleteId,
+                deleteContact
             }}>
             {children}
         </ContactContext>
