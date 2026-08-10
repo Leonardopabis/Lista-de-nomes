@@ -1,18 +1,85 @@
-# React + Vite
+# 📋 Lista de Nomes
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Teste aqui: https://lista-de-nomes-ten.vercel.app/
 
-Currently, two official plugins are available:
+Aplicação web desenvolvida para gerenciamento de uma lista de nomes, permitindo adicionar, editar e excluir registros de forma simples e intuitiva.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📖 Sobre
 
-## React Compiler
+O projeto foi desenvolvido como forma de praticar conceitos fundamentais do **React**, trabalhando com gerenciamento de estado, manipulação de listas e interação com formulários.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+A aplicação permite adicionar novos nomes, editar nomes existentes e removê-los da lista diretamente pela interface.
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the Oxlint configuration
+## ✨ Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+* Cadastro de novos nomes
+* Edição de nomes existentes
+* Exclusão de nomes
+* Atualização da lista em tempo real
+* Validação dos dados inseridos
+
+---
+
+## 🛠 Tecnologias
+
+### Front-end
+
+* React
+* JavaScript
+* HTML
+* CSS
+
+### Ferramentas
+
+* Vite
+* Git
+* GitHub
+
+---
+
+## ⚙️ Fluxo da aplicação
+
+1. O usuário informa um nome no formulário.
+2. A aplicação recebe e valida o valor informado.
+3. O nome é adicionado à lista.
+4. Os nomes cadastrados são renderizados na interface.
+5. O usuário pode editar ou excluir qualquer nome.
+6. A interface é atualizada automaticamente após cada alteração.
+
+---
+
+## 📷 Demonstração
+
+A aplicação possui uma interface simples para gerenciamento dos nomes.
+
+### Adicionando um nome
+
+O usuário informa o nome através do campo de entrada e adiciona o registro à lista.
+
+### Editando um nome
+
+Os nomes cadastrados podem ser alterados diretamente pela interface.
+
+### Excluindo um nome
+
+Os registros podem ser removidos individualmente da lista.
+
+---
+
+## 📌 Aprendizados
+
+Durante o desenvolvimento foram praticados conceitos como:
+
+* Componentização no React
+* Gerenciamento de estado
+* Manipulação de arrays
+* Renderização de listas com `.map()`
+* Remoção de elementos com `.filter()`
+* Eventos e interação do usuário
+* Inputs e formulários
+* Atualização dinâmica da interface
+* Estruturação de uma aplicação React
+
+---
