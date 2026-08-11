@@ -3,7 +3,7 @@ import './new-contact-form.styles.css'
 import contactContext from '../ContactProvider/ContactContext'
 
 export function NewContactForm() {
-    const { handleAddContact } = useContext(contactContext)
+    const { handleAddContact, fotoImage, setFotoImage, editingImage, setEditingImage, editingImageName, setEditingImageName } = useContext(contactContext)
     const [errors, setErrors] = useState({
         name: '',
         gender: '',
@@ -51,6 +51,29 @@ export function NewContactForm() {
             ...prev, [name]: fieldError
         }))
     }
+   
+    const [fileName, setFileName] = useState('Nenhum arquivo selecionado')
+
+    function handleFileChange(event) {
+        const file = event.target.files[0]
+        if (!file) return
+
+        setFileName(file.name)
+
+        const reader = new FileReader()
+
+        reader.onloadend = () => {
+            if (isEditing) {
+                setEditingImage(reader.result)
+                setFileName(editingImageName)
+            } else {
+                setFotoImage(reader.result)
+            }
+        }
+
+        reader.readAsDataURL(file)
+
+    }
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -60,6 +83,7 @@ export function NewContactForm() {
         const gender = formData.get('gender')
         const email = formData.get('email')?.toString().trim()
         const phone = formData.get('phone')?.toString().trim()
+        const image = isEditing ? editingImage : fotoImage
 
         
         const currentErrors = {
@@ -75,19 +99,24 @@ export function NewContactForm() {
 
         if (isValid) {
             if (isEditing) {
-                handleEditContact(contactId, name, gender, email, phone)
+                handleEditContact(contactId, name, gender, email, phone, image)
+                
                 event.currentTarget.reset()
             } else {
 
-                handleAddContact({ name, gender, email, phone })
+                handleAddContact({ name, gender, email, phone, image })
+                setFileName('Nenhum arquivo selecionado')
+                setFotoImage(null)
                 event.currentTarget.reset()
             }
+
+            setFileName('Nenhum arquivo selecionado')
         }
         
         
     }
     
-    const {nameRef, genderMaleRef, genderFemaleRef, emailRef, phoneRef, isEditing, setIsEditing, handleEditContact, contactId, setContactId} = useContext(contactContext)
+    const {nameRef, genderMaleRef, genderFemaleRef, emailRef, phoneRef, imageRef, isEditing, setIsEditing, handleEditContact, contactId, setContactId} = useContext(contactContext)
 
     useEffect(() => {
         if (isEditing === true) {
@@ -99,6 +128,7 @@ export function NewContactForm() {
             })
         }
     }, [isEditing])
+
 
     return (
         <>
@@ -135,6 +165,12 @@ export function NewContactForm() {
                 <div className="input-field-container">
                     <input type="tel" placeholder="Telefone" name='phone' onChange={handleChange} className={errors.phone ? 'input-error-state' : ''} ref={phoneRef}/>
                     {errors.phone && <span className='error-message'>{errors.phone}</span>}
+                </div>
+
+                <div className="input-field-container">
+                    <label htmlFor="profile-picture" className='profile-button'>Foto de perfil</label>
+                    <input name='image' type="file" accept='image/*' id='profile-picture' className='profile-picture' onChange={handleFileChange} ref={imageRef}/>
+                    <span className="file-name">{fileName}</span>
                 </div>
 
                 <button type="submit" className='new-contact-button'>{isEditing ? 'Editar Contato' : 'Adicionar Contato'}</button>

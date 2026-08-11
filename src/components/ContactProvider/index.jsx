@@ -15,14 +15,15 @@ export function ContactProvider({ children }) {
         localStorage.setItem('contacts', JSON.stringify(contacts))
     }, [contacts])
 
-    const handleAddContact = ({ name, gender, email, phone}) => {
+    const handleAddContact = ({ name, gender, email, phone, image}) => {
         
         const newContact = {
             id: crypto.randomUUID(),
             name: name,
             gender: gender,
             email: email,
-            phone: phone
+            phone: phone,
+            image: image,
         }
 
         setContacts(currentContacts => [
@@ -37,11 +38,12 @@ export function ContactProvider({ children }) {
     const phoneRef = useRef(null)
     const emailRef = useRef(null)
     const [isEditing, setIsEditing] = useState(false)
+    const imageRef = useRef(null)
 
-    function handleEditContact(id, name, gender, email, phone) {
+    function handleEditContact(id, name, gender, email, phone, image) {
         const updatedContacts = contacts.map((contact) => {
             if (contact.id === id) {
-                return {...contact, name: name, gender:gender, phone:phone, email:email}
+                return {...contact, name: name, gender:gender, phone:phone, email:email, image:image}
             }
             
             return contact
@@ -51,7 +53,10 @@ export function ContactProvider({ children }) {
         setContactId(null)
     }
 
-    function setInputsToEdit(name, gender, email, phone) {
+    const [editingImage, setEditingImage] = useState(null)
+    const [editingImageName, setEditingImageName] = useState('Nenhum arquivo selecionado')
+
+    function setInputsToEdit(name, gender, email, phone, image, imageName) {
         nameRef.current.value = name
         if (gender === 'male') {
             genderMaleRef.current.checked = true
@@ -60,6 +65,12 @@ export function ContactProvider({ children }) {
         }
         phoneRef.current.value = phone
         emailRef.current.value = email
+        setEditingImage(image)
+        setEditingImageName(imageName || (image ? imageName : "Nenhum arquivo selecionado"))
+        
+        if (imageRef.current) {
+            imageRef.current.value = ''
+        }
     }
 
     const [deleteId, setDeleteId] = useState(null)
@@ -77,6 +88,8 @@ export function ContactProvider({ children }) {
         setDeleteId(null)
     }
 
+    const [fotoImage, setFotoImage] = useState(null)
+
     return (
         <ContactContext
             value={{
@@ -89,6 +102,7 @@ export function ContactProvider({ children }) {
                 genderFemaleRef,
                 phoneRef,
                 emailRef,
+                imageRef,
                 isEditing,
                 setIsEditing,
                 handleEditContact,
@@ -98,7 +112,13 @@ export function ContactProvider({ children }) {
                 closeDialog,
                 deleteId,
                 setDeleteId,
-                deleteContact
+                deleteContact,
+                editingImage,
+                setEditingImage,
+                fotoImage,
+                setFotoImage,
+                editingImageName,
+                setEditingImageName
             }}>
             {children}
         </ContactContext>

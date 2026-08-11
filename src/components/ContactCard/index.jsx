@@ -5,13 +5,16 @@ import contactContext from '../ContactProvider/ContactContext'
 export function ContactCard({ contact, isDeleting }) {
     let img = null
     let genero = ''
-
-    if (contact.gender === 'male') {
-        img = './src/assets/imagemHomem.png'
-        genero = 'Masculino'
+    if (!contact.image) {
+            if (contact.gender === 'male') {
+                img = './src/assets/imagemHomem.png'
+                genero = 'Masculino'
+            } else {
+                img = './src/assets/imagemMulher.png'
+                genero = 'Feminino'
+            }
     } else {
-        img = './src/assets/imagemMulher.png'
-        genero = 'Feminino'
+        img = contact.image
     }
 
     const {setIsEditing, handleEditContact, setContactId, setInputsToEdit, openDialog, setDeleteId} = useContext(contactContext)
@@ -30,7 +33,7 @@ export function ContactCard({ contact, isDeleting }) {
     return (
         <div className='contact-card'>
             <div className='top-part'>
-                <img src={img} alt={contact.name} />
+                <img src={img} alt={contact.name} className='foto-contato'/>
                 <div>
                     <h3>{contact.name}</h3>
                     <p>{genero}</p>
@@ -41,7 +44,7 @@ export function ContactCard({ contact, isDeleting }) {
                             <button onClick={() => {
                                 setIsEditing(true)
                                 setContactId(contact.id)
-                                setInputsToEdit(contact.name, contact.gender, contact.email, contact.phone)
+                                setInputsToEdit(contact.name, contact.gender, contact.email, contact.phone, contact.image)
                             }}><img src="./src/assets/editImage.png" alt="" /></button>
                             <button onClick={() => {
                                 setDeleteId(contact.id)

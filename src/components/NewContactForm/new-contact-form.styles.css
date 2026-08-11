@@ -1,4 +1,3 @@
-
 h2 {
     font-weight: bold;
     font-size: 20px;
@@ -11,13 +10,13 @@ h2 {
     margin: 10px 0;
     display: flex;
     flex-direction: column;
-    gap: 12px; 
+    gap: 12px;
 }
 
 .new-contact-form input[type='text'],
 .new-contact-form input[type='email'],
 .new-contact-form input[type='tel'] {
-    width: 100%; 
+    width: 100%;
     padding: 8px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -55,7 +54,7 @@ h2 {
 .input-radio-container {
     display: flex;
     gap: 10px;
-    padding: 6px 0; 
+    padding: 6px 0;
 }
 
 .input-radio {
@@ -123,8 +122,29 @@ h2 {
         opacity: 0;
         transform: translateY(-2px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.profile-picture {
+    display: none;
+}
+
+.profile-button {
+    max-width: 150px;
+    background-color: #2563eb;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-block;
+    font-family: sans-serif;
+    transition: background-color 0.2s;
+}
+
+.profile-button:hover {
+    background-color: #1d4ed8;
 }
