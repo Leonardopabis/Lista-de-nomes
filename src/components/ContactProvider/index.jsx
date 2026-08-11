@@ -15,7 +15,7 @@ export function ContactProvider({ children }) {
         localStorage.setItem('contacts', JSON.stringify(contacts))
     }, [contacts])
 
-    const handleAddContact = ({ name, gender, email, phone, image}) => {
+    const handleAddContact = ({ name, gender, email, phone, image, imageName}) => {
         
         const newContact = {
             id: crypto.randomUUID(),
@@ -24,6 +24,7 @@ export function ContactProvider({ children }) {
             email: email,
             phone: phone,
             image: image,
+            imageName: imageName,
         }
 
         setContacts(currentContacts => [
@@ -39,11 +40,12 @@ export function ContactProvider({ children }) {
     const emailRef = useRef(null)
     const [isEditing, setIsEditing] = useState(false)
     const imageRef = useRef(null)
+    const imageNameRef = useRef(null)
 
-    function handleEditContact(id, name, gender, email, phone, image) {
+    function handleEditContact(id, name, gender, email, phone, image, imageName) {
         const updatedContacts = contacts.map((contact) => {
             if (contact.id === id) {
-                return {...contact, name: name, gender:gender, phone:phone, email:email, image:image}
+                return {...contact, name: name, gender:gender, phone:phone, email:email, image:image, imageName:imageName}
             }
             
             return contact
@@ -65,6 +67,11 @@ export function ContactProvider({ children }) {
         }
         phoneRef.current.value = phone
         emailRef.current.value = email
+        console.log(imageName)
+        if (!imageName) {
+            imageName = 'Nenhum arquivo selecionado'
+        }
+        imageNameRef.current.textContent = imageName
         setEditingImage(image)
         setEditingImageName(imageName || (image ? imageName : "Nenhum arquivo selecionado"))
         
@@ -118,7 +125,8 @@ export function ContactProvider({ children }) {
                 fotoImage,
                 setFotoImage,
                 editingImageName,
-                setEditingImageName
+                setEditingImageName,
+                imageNameRef
             }}>
             {children}
         </ContactContext>

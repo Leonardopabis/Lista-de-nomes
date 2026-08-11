@@ -44,7 +44,7 @@ export function ContactCard({ contact, isDeleting }) {
                             <button onClick={() => {
                                 setIsEditing(true)
                                 setContactId(contact.id)
-                                setInputsToEdit(contact.name, contact.gender, contact.email, contact.phone, contact.image)
+                                setInputsToEdit(contact.name, contact.gender, contact.email, contact.phone, contact.image, contact.imageName)
                             }}><img src="/editImage.png" alt="" /></button>
                             <button onClick={() => {
                                 setDeleteId(contact.id)

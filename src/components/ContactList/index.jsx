@@ -6,7 +6,7 @@ export function ContactList({ contacts }) {
         <div className='contact-list'>
             {contacts.map(contact => {
                 if (!contact) return null
-
+                console.log(contact.imageName)
                 return (
                     <ContactCard key={contact.id} contact={contact} isDeleting={false}/>
                 )

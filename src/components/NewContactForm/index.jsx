@@ -84,6 +84,7 @@ export function NewContactForm() {
         const email = formData.get('email')?.toString().trim()
         const phone = formData.get('phone')?.toString().trim()
         const image = isEditing ? editingImage : fotoImage
+        const imageName = fileName
 
         
         const currentErrors = {
@@ -99,12 +100,12 @@ export function NewContactForm() {
 
         if (isValid) {
             if (isEditing) {
-                handleEditContact(contactId, name, gender, email, phone, image)
+                handleEditContact(contactId, name, gender, email, phone, image, imageName)
                 
                 event.currentTarget.reset()
             } else {
 
-                handleAddContact({ name, gender, email, phone, image })
+                handleAddContact({ name, gender, email, phone, image, imageName })
                 setFileName('Nenhum arquivo selecionado')
                 setFotoImage(null)
                 event.currentTarget.reset()
@@ -116,7 +117,7 @@ export function NewContactForm() {
         
     }
     
-    const {nameRef, genderMaleRef, genderFemaleRef, emailRef, phoneRef, imageRef, isEditing, setIsEditing, handleEditContact, contactId, setContactId} = useContext(contactContext)
+    const {nameRef, genderMaleRef, genderFemaleRef, emailRef, phoneRef, imageRef, isEditing, setIsEditing, handleEditContact, contactId, setContactId, imageNameRef} = useContext(contactContext)
 
     useEffect(() => {
         if (isEditing === true) {
@@ -170,7 +171,7 @@ export function NewContactForm() {
                 <div className="input-field-container">
                     <label htmlFor="profile-picture" className='profile-button'>Foto de perfil</label>
                     <input name='image' type="file" accept='image/*' id='profile-picture' className='profile-picture' onChange={handleFileChange} ref={imageRef}/>
-                    <span className="file-name">{fileName}</span>
+                    <span className="file-name" name='imageName' ref={imageNameRef}>{fileName}</span>
                 </div>
 
                 <button type="submit" className='new-contact-button'>{isEditing ? 'Editar Contato' : 'Adicionar Contato'}</button>
