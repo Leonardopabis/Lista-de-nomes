@@ -7,10 +7,10 @@ export function ContactCard({ contact, isDeleting }) {
     let genero = ''
     if (!contact.image) {
             if (contact.gender === 'male') {
-                img = './src/assets/imagemHomem.png'
+                img = './public/imagemHomem.png'
                 genero = 'Masculino'
             } else {
-                img = './src/assets/imagemMulher.png'
+                img = './public/imagemMulher.png'
                 genero = 'Feminino'
             }
     } else {
@@ -45,11 +45,11 @@ export function ContactCard({ contact, isDeleting }) {
                                 setIsEditing(true)
                                 setContactId(contact.id)
                                 setInputsToEdit(contact.name, contact.gender, contact.email, contact.phone, contact.image)
-                            }}><img src="./src/assets/editImage.png" alt="" /></button>
+                            }}><img src="./public/editImage.png" alt="" /></button>
                             <button onClick={() => {
                                 setDeleteId(contact.id)
                                 openDialog()
-                            }}><img src="./src/assets/deleteImage.png" alt="" /></button>
+                            }}><img src="./public/deleteImage.png" alt="" /></button>
                         </>
                     )}
                 </div>
